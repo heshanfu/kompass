@@ -19,9 +19,9 @@ class PilotBuilderImpl : PilotBuilder {
         val initBlock = CodeBlock.builder()
         elements.asSequence()
                 .forEach { element ->
-                    fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName())
+                    fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName)
                     initBlock.addStatement("" +
-                            "this.registerDetour(${element.asClassName().simpleName()}())"
+                        "this.registerDetour(${element.asClassName().simpleName}())"
                     )
                 }
 

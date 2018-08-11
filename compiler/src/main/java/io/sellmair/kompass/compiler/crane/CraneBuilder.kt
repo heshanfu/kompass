@@ -26,7 +26,7 @@ class CraneBuilderImpl : CraneBuilder {
 
 
         elements.forEach { element ->
-            fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName())
+            fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName)
             fileSpec.addAliasedImport(ClassName(element.serializerPackageName(environment),
                     element.serializerClassName()),
                     element.serializerClassName())

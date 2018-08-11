@@ -33,19 +33,19 @@ class MapBuilderImpl : MapBuilder {
                 .mapNotNull { element -> element.destinationTarget?.let { element to it } }
                 .forEach { (element, target) ->
                     val targetElement = environment.typeUtils.asElement(target) as TypeElement
-                    fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName())
-                    fileSpec.addAliasedImport(targetElement.asClassName(), targetElement.asClassName().simpleName())
+                    fileSpec.addAliasedImport(element.asClassName(), element.asClassName().simpleName)
+                    fileSpec.addAliasedImport(targetElement.asClassName(), targetElement.asClassName().simpleName)
 
 
 
                     getFunction.addStatement("" +
-                            "is ${element.asClassName().simpleName()} -> " +
-                            targetElement.asClassName().simpleName() +
+                        "is ${element.asClassName().simpleName} -> " +
+                        targetElement.asClassName().simpleName +
                             (if (targetElement.isActivity(environment)) "::class" else "()") +
                             ".asRoute()")
                 }
 
-        fileSpec.addStaticImport("io.sellmair.kompass.exception", "MissingMapElementException")
+        fileSpec.addImport("io.sellmair.kompass.exception", "MissingMapElementException")
         getFunction.addStatement("else -> throw MissingMapElementException(destination)")
 
         getFunction.endControlFlow()
